@@ -1,6 +1,7 @@
 import { Component } from "react";
 import FeedbackOptions from "./Components/FeedbackOptions/FeedbackOptions";
 import Section from "./Components/Section/Section";
+import Statistics from "./Components/Statistics/Statistics";
 
 class App extends Component {
   state = {
@@ -14,23 +15,38 @@ class App extends Component {
     this.setState((ps) => ({ [key]: ps[key] + 1 }));
   };
 
+  countTotalFeedback = () =>
+    Object.values(this.state).reduce((acc, value) => acc + value, 0);
+
+  countPositiveFeedbackPercentage = (total) =>
+    `${Math.round((this.state.good / total) * 100)}`;
+
   render() {
     const { good, neutral, bad } = this.state;
-    const { updateQuantityFeedbeacks } = this;
+    const {
+      updateQuantityFeedbeacks,
+      countTotalFeedback,
+      countPositiveFeedbackPercentage,
+    } = this;
+    const total = countTotalFeedback();
 
     return (
       <div>
         <Section title="Please leave feedbeack">
           <FeedbackOptions
             options={this.state}
-            onLeaveFeeeddback={updateQuantityFeedbeacks}
+            onLeaveFeeedback={updateQuantityFeedbeacks}
           />
         </Section>
 
         <Section title="Statistics">
-          <span>Good:{good}</span>
-          <span>Neutral:{neutral}</span>
-          <span>Bad:{bad}</span>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={countPositiveFeedbackPercentage}
+          />
         </Section>
       </div>
     );
