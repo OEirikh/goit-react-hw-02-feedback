@@ -18,9 +18,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 250ms linear;
+  background-color: azure;
 }
 
 .button:hover,
 .button:focus {
   transform: scale(1.2);
+  background-color: aquamarine;
 }
