@@ -3,16 +3,24 @@
   justify-content: center;
   list-style: none;
   padding: 10px;
-  margin-left: 20px;
+  margin: 0;
 }
+
 .item:not(:last-child) {
-  margin-right: 40px;
+  margin-right: 50px;
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 5px 14px;
   border-radius: 5px;
   outline: none;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
+  transition: transform 250ms linear;
+}
+
+.button:hover,
+.button:focus {
+  transform: scale(1.2);
 }
